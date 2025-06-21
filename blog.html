@@ -1,0 +1,275 @@
+---
+layout: default
+title: Blog
+---
+
+<section class="blog-hero">
+    <div class="container">
+        <div class="blog-hero-content">
+            <h1 class="page-title">Blog</h1>
+            <p class="page-subtitle">Thoughts, tutorials, and insights from my development journey</p>
+        </div>
+    </div>
+</section>
+
+<section class="blog-content">
+    <div class="container">
+        <div class="blog-grid">
+            {% for post in site.posts %}
+                <article class="blog-card">
+                    <div class="blog-card-image">
+                        {% if post.image %}
+                            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+                        {% else %}
+                            <div class="blog-placeholder">
+                                <i class="fas fa-code"></i>
+                            </div>
+                        {% endif %}
+                        <div class="blog-category">
+                            {% if post.category %}
+                                <span class="category-tag">{{ post.category }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">
+                                <i class="fas fa-calendar"></i>
+                                {{ post.date | date: "%B %d, %Y" }}
+                            </span>
+                            <span class="blog-read-time">
+                                <i class="fas fa-clock"></i>
+                                {% assign words = post.content | number_of_words %}
+                                {% if words < 360 %}
+                                    1 min read
+                                {% else %}
+                                    {{ words | divided_by: 180 }} min read
+                                {% endif %}
+                            </span>
+                        </div>
+                        
+                        <h2 class="blog-title">
+                            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                        </h2>
+                        
+                        <p class="blog-excerpt">
+                            {{ post.excerpt | strip_html | truncate: 150 }}
+                        </p>
+                        
+                        <div class="blog-tags">
+                            {% if post.tags %}
+                                {% for tag in post.tags limit: 3 %}
+                                    <span class="tag">#{{ tag }}</span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        
+                        <a href="{{ post.url | relative_url }}" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            {% endfor %}
+            
+            {% if site.posts.size == 0 %}
+                <div class="no-posts">
+                    <i class="fas fa-edit"></i>
+                    <h3>No posts yet</h3>
+                    <p>Check back soon for new content!</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<style>
+/* Blog specific styles */
+.blog-hero {
+    padding: 8rem 0 4rem;
+    background: var(--bg-secondary);
+    text-align: center;
+}
+
+.page-title {
+    font-size: 3.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.blog-content {
+    padding: 4rem 0;
+    background: var(--bg-primary);
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.blog-card {
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 255, 136, 0.1);
+}
+
+.blog-card-image {
+    height: 200px;
+    background: var(--gradient-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.blog-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 3rem;
+    color: var(--bg-primary);
+}
+
+.blog-category {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+.category-tag {
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.blog-card-content {
+    padding: 1.5rem;
+}
+
+.blog-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.blog-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.blog-title {
+    margin-bottom: 1rem;
+}
+
+.blog-title a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.blog-title a:hover {
+    color: var(--primary-color);
+}
+
+.blog-excerpt {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tag {
+    background: var(--bg-tertiary);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    border: 1px solid var(--border-color);
+}
+
+.read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.read-more:hover {
+    color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+.no-posts {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+}
+
+.no-posts i {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.no-posts h3 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-title {
+        font-size: 2.5rem;
+    }
+    
+    .blog-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+</style> 

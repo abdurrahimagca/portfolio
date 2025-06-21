@@ -1,18 +1,45 @@
 ---
-layout: page
+layout: default
 title: About
-permalink: /about/
+redirect_to: "/#about"
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+<script>
+  window.location.href = "/#about";
+</script>
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+<section class="redirect-page">
+    <div class="container">
+        <div class="redirect-content">
+            <h1>Redirecting...</h1>
+            <p>You're being redirected to the About section on the homepage.</p>
+            <p>If you're not redirected automatically, <a href="/#about">click here</a>.</p>
+        </div>
+    </div>
+</section>
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+<style>
+.redirect-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    text-align: center;
+}
 
+.redirect-content h1 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
 
-[jekyll-organization]: https://github.com/jekyll
+.redirect-content p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.redirect-content a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+</style>
