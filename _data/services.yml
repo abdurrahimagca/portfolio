@@ -1,0 +1,64 @@
+title: "Services & Projects"
+subtitle: "What I can do for you"
+
+services:
+  - icon: "fas fa-code"
+    title: "Web Development"
+    description: "Custom web applications built with modern technologies and best practices."
+    features:
+      - "React/Next.js Frontend"
+      - "Node.js/NestJS Backend"
+      - "Performance Optimization"
+      - "SEO Implementation"
+  
+  - icon: "fas fa-shopping-cart"
+    title: "E-Commerce Solutions"
+    description: "Complete e-commerce platforms with payment integration and admin dashboards."
+    features:
+      - "Shopware Integration"
+      - "Custom CMS Solutions"
+      - "Booking Management"
+      - "Admin Panels"
+  
+  - icon: "fas fa-server"
+    title: "Backend Development"
+    description: "Scalable server-side solutions with robust APIs and database management."
+    features:
+      - "RESTful APIs"
+      - "GraphQL"
+      - "Database Design"
+      - "CI/CD Deployment"
+
+projects:
+  title: "Featured Projects"
+  items:
+    - title: "E-Commerce Full Stack Platform"
+      description: "Complete e-commerce solution for tour agency using React/Next.js frontend and Node.js backend with Shopware integration."
+      demo_link: "#"
+      github_link: "#"
+      technologies:
+        - "React/Next.js"
+        - "Node.js"
+        - "Shopware"
+        - "Strapi CMS"
+        - "Docker"
+    
+    - title: "QooQuote - Social Media Platform"
+      description: "Modern social media platform with clean UI design, PostgreSQL database, and real-time features using WebSocket."
+      github_link: "github.com/abdurrahimagca/qoo-quote-be"
+      technologies:
+        - "NestJS"
+        - "GraphQL"
+        - "PostgreSQL"
+        - "WebSocket"
+        - "Figma"
+    
+    - title: "Full Stack Learning Platform"
+      description: "Educational platform with responsive frontend, custom event management system, and integrated marketing tools."
+      demo_link: "#"
+      github_link: "#"
+      technologies:
+        - "React"
+        - "Node.js"
+        - "Event Management"
+        - "Email Integration" 

@@ -1,0 +1,19 @@
+name: "Abdurrahim Ağca"
+greeting: "Hello, I'm"
+subtitle: "Full-Stack Developer"
+description: "I craft digital experiences through clean code and innovative solutions. Specializing in modern web technologies and bringing ideas to life."
+
+# JSON Animation Data
+json_animation:
+  name: "Abdurrahim"
+  surname: "Ağca"
+  role: "Full-Stack Developer"
+  status: "available"
+  skills:
+    - "React"
+    - "Node.js"
+    - "NestJS"
+    - "TypeScript"
+  location: "Antalya, Turkey"
+  experience: "1+ years"
+  passion: "creating digital solutions" 

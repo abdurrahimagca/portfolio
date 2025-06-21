@@ -238,6 +238,7 @@ a:hover {
     height: 120%;
     background: linear-gradient(45deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
     z-index: -1;
+    will-change: transform;
   }
 }
 
@@ -251,6 +252,7 @@ a:hover {
 
 .hero-text {
   animation: slideInLeft 1s ease-out;
+  will-change: transform;
 }
 
 .hero-title {
@@ -297,6 +299,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   animation: slideInRight 1s ease-out;
+  will-change: transform;
 }
 
 .code-animation {
@@ -348,6 +351,58 @@ a:hover {
     margin-top: 40px;
     position: relative;
     height: calc(100% - 60px);
+    overflow: auto;
+    
+    .json-data {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.4;
+      margin: 0;
+      padding: 10px;
+      color: var(--text-secondary);
+      
+      // IDE-style syntax highlighting
+      .json-key {
+        color: #9CDCFE; // Light blue for keys
+      }
+      
+      .json-string {
+        color: #CE9178; // Orange for string values
+      }
+      
+      .json-brace,
+      .json-bracket {
+        color: #FFD700; // Gold for braces and brackets
+      }
+      
+      .json-colon,
+      .json-comma {
+        color: #D4D4D4; // Light gray for punctuation
+      }
+      
+      .json-line {
+        opacity: 0;
+        transform: translateX(-10px);
+        animation: typewriterLine 0.5s ease-out forwards;
+        
+        // Sync with hero text animations
+        &.json-line-1 { animation-delay: 0.5s; } // { - with "Hello, I'm"
+        &.json-line-2 { animation-delay: 1.0s; } // "name" - with name appearance
+        &.json-line-3 { animation-delay: 1.2s; } // "surname" - right after name
+        &.json-line-4 { animation-delay: 1.8s; } // "role" - with hero-subtitle
+        &.json-line-5 { animation-delay: 2.3s; } // "status" - with description start
+        &.json-line-6 { animation-delay: 2.5s; } // "skills" [
+        &.json-line-7 { animation-delay: 2.7s; } // "React"
+        &.json-line-8 { animation-delay: 2.9s; } // "Node.js"
+        &.json-line-9 { animation-delay: 3.1s; } // "Python"
+        &.json-line-10 { animation-delay: 3.3s; } // "TypeScript"
+        &.json-line-11 { animation-delay: 3.5s; } // ]
+        &.json-line-12 { animation-delay: 3.7s; } // "location"
+        &.json-line-13 { animation-delay: 3.9s; } // "experience"
+        &.json-line-14 { animation-delay: 4.1s; } // "passion" - with buttons
+        &.json-line-15 { animation-delay: 4.3s; } // } - final
+      }
+    }
   }
   
   .code-line {
@@ -939,6 +994,7 @@ a:hover {
   height: 100%;
   pointer-events: none;
   z-index: -10;
+  overflow: hidden;
 }
 
 .floating-element {
@@ -947,6 +1003,7 @@ a:hover {
   border-radius: 50%;
   opacity: 0.1;
   animation: float 6s ease-in-out infinite;
+  will-change: transform;
   
   &.floating-1 {
     width: 100px;
@@ -1015,6 +1072,17 @@ a:hover {
   }
 }
 
+@keyframes typewriterLine {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @keyframes blink {
   0%, 50% {
     opacity: 1;
@@ -1022,6 +1090,11 @@ a:hover {
   51%, 100% {
     opacity: 0;
   }
+}
+
+// Enhanced typing cursor style
+.hero-name {
+  position: relative;
 }
 
 @keyframes slideUp {
@@ -1064,6 +1137,28 @@ a:hover {
   }
   50% {
     transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+// Loading and initialization states
+body {
+  &.loaded {
+    .hero-text,
+    .hero-image {
+      animation-play-state: running;
+    }
+  }
+  
+  &:not(.loaded) {
+    .hero-text,
+    .hero-image {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    
+    .hero-image {
+      transform: translateX(50px);
+    }
   }
 }
 

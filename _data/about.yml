@@ -1,0 +1,40 @@
+title: "About Me"
+subtitle: "Passionate developer with a love for creating"
+
+description:
+  - "I'm a passionate full-stack developer with over 1 years of experience creating digital solutions that make a difference. I love turning complex problems into simple, beautiful designs."
+
+skills:
+  frontend:
+    title: "Frontend"
+    items:
+      - "React"
+      - "Next.js"
+      - "Vue.js"
+      - "TypeScript"
+      - "Tailwind CSS"
+  
+  backend:
+    title: "Backend"
+    items:
+      - "Node.js"
+      - "NestJS"
+      - "C#/.NET"
+      - "GraphQL"
+      - "PostgreSQL"
+  
+  tools:
+    title: "Tools"
+    items:
+      - "Docker"
+      - "GitHub Actions"
+      - "Git"
+      - "Figma"
+
+stats:
+  - number: "10+"
+    label: "Projects Completed"
+  - number: "1+"
+    label: "Years Experience"
+  - number: "100%"
+    label: "Client Satisfaction" 

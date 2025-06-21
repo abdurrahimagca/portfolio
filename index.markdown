@@ -8,22 +8,22 @@ title: Home
 
 <!-- Hero Section -->
 <section class="hero" id="hero">
-    <div class="hero-bg parallax" data-speed="0.5"></div>
+    <div class="hero-bg"></div>
     <div class="container">
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="hero-title">
-                    <span class="hero-greeting">Hello, I'm</span>
-                    <span class="hero-name">Your Name</span>
+                    <span class="hero-greeting">{{ site.data.hero.greeting }}</span>
+                    <span class="hero-name">{{ site.data.hero.name }}</span>
                 </h1>
-                <h2 class="hero-subtitle">Full-Stack Developer</h2>
+                <h2 class="hero-subtitle">{{ site.data.hero.subtitle }}</h2>
                 <p class="hero-description">
-                    I craft digital experiences through clean code and innovative solutions. 
-                    Specializing in modern web technologies and bringing ideas to life.
+                    {{ site.data.hero.description }}
                 </p>
                 <div class="hero-buttons">
-                    <a href="#services" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                    <a href="/about" class="btn btn-primary">About Me</a>
+                    <a href="/services" class="btn btn-outline">View My Work</a>
+                    <a href="/contact" class="btn btn-outline">Get In Touch</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -34,20 +34,21 @@ title: Home
                         <div class="control maximize"></div>
                     </div>
                     <div class="code-content">
-                        <div class="code-line"></div>
-                        <div class="code-line"></div>
-                        <div class="code-line"></div>
-                        <div class="code-line"></div>
-                        <div class="code-line"></div>
-                        <div class="code-line"></div>
-                        <div class="cursor"></div>
-                    </div>
-                    <div class="mini-renderer">
-                        <div class="rendered-app">
-                            <h1 class="rendered-title">Portfolio</h1>
-                            <div class="rendered-card">
-                                <p class="rendered-text">Web Developer</p>
-                            </div>
+                        <div class="json-data">
+                            <div class="json-line json-line-1"><span class="json-brace">{</span></div>
+                            <div class="json-line json-line-2">  <span class="json-key">"name"</span><span class="json-colon">:</span> <span class="json-string">"{{ site.data.hero.json_animation.name }}"</span><span class="json-comma">,</span></div>
+                            <div class="json-line json-line-3">  <span class="json-key">"surname"</span><span class="json-colon">:</span> <span class="json-string">"{{ site.data.hero.json_animation.surname }}"</span><span class="json-comma">,</span></div>
+                            <div class="json-line json-line-4">  <span class="json-key">"role"</span><span class="json-colon">:</span> <span class="json-string">"{{ site.data.hero.json_animation.role }}"</span><span class="json-comma">,</span></div>
+                            <div class="json-line json-line-5">  <span class="json-key">"status"</span><span class="json-colon">:</span> <span class="json-string">"{{ site.data.hero.json_animation.status }}"</span><span class="json-comma">,</span></div>
+                            <div class="json-line json-line-6">  <span class="json-key">"skills"</span><span class="json-colon">:</span> <span class="json-bracket">[</span></div>
+                            {% for skill in site.data.hero.json_animation.skills %}
+                            <div class="json-line json-line-{{ forloop.index | plus: 6 }}">    <span class="json-string">"{{ skill }}"</span>{% unless forloop.last %}<span class="json-comma">,</span>{% endunless %}</div>
+                            {% endfor %}
+                            <div class="json-line json-line-11">  <span class="json-bracket">]</span><span class="json-comma">,</span></div>
+                            <div class="json-line json-line-12">  <span class="json-key">"location"</span><span class="json-colon">:</span> <span class="json-string">"{{ site.data.hero.json_animation.location }}"</span><span class="json-comma">,</span></div>
+                            <div class="json-line json-line-13">  <span class="json-key">"experience"</span><span class="json-colon">:</span> <span class="json-string">"{{ site.data.hero.json_animation.experience }}"</span><span class="json-comma">,</span></div>
+                            <div class="json-line json-line-14">  <span class="json-key">"passion"</span><span class="json-colon">:</span> <span class="json-string">"{{ site.data.hero.json_animation.passion }}"</span></div>
+                            <div class="json-line json-line-15"><span class="json-brace">}</span></div>
                         </div>
                     </div>
                 </div>
@@ -63,68 +64,53 @@ title: Home
 <section class="about" id="about">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">About Me</h2>
-            <p class="section-subtitle">Passionate developer with a love for creating</p>
+            <h2 class="section-title">{{ site.data.about.title }}</h2>
+            <p class="section-subtitle">{{ site.data.about.subtitle }}</p>
         </div>
         
         <div class="about-content">
             <div class="about-text">
-                <p>
-                    I'm a passionate full-stack developer with over X years of experience creating 
-                    digital solutions that make a difference. I love turning complex problems into 
-                    simple, beautiful designs.
-                </p>
-                <p>
-                    When I'm not coding, you can find me exploring new technologies, contributing to 
-                    open source projects, or sharing knowledge through technical writing.
-                </p>
+                {% for paragraph in site.data.about.description %}
+                <p>{{ paragraph }}</p>
+                {% endfor %}
                 
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h4>Frontend</h4>
+                        <h4>{{ site.data.about.skills.frontend.title }}</h4>
                         <div class="skills">
-                            <span class="skill">React</span>
-                            <span class="skill">Vue.js</span>
-                            <span class="skill">TypeScript</span>
-                            <span class="skill">CSS/SCSS</span>
+                            {% for skill in site.data.about.skills.frontend.items %}
+                            <span class="skill">{{ skill }}</span>
+                            {% endfor %}
                         </div>
                     </div>
                     
                     <div class="skill-category">
-                        <h4>Backend</h4>
+                        <h4>{{ site.data.about.skills.backend.title }}</h4>
                         <div class="skills">
-                            <span class="skill">Node.js</span>
-                            <span class="skill">Python</span>
-                            <span class="skill">PostgreSQL</span>
-                            <span class="skill">MongoDB</span>
+                            {% for skill in site.data.about.skills.backend.items %}
+                            <span class="skill">{{ skill }}</span>
+                            {% endfor %}
                         </div>
                     </div>
                     
                     <div class="skill-category">
-                        <h4>Tools</h4>
+                        <h4>{{ site.data.about.skills.tools.title }}</h4>
                         <div class="skills">
-                            <span class="skill">Docker</span>
-                            <span class="skill">AWS</span>
-                            <span class="skill">Git</span>
-                            <span class="skill">Figma</span>
+                            {% for skill in site.data.about.skills.tools.items %}
+                            <span class="skill">{{ skill }}</span>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="about-stats">
+                {% for stat in site.data.about.stats %}
                 <div class="stat-item">
-                    <span class="stat-number">50+</span>
-                    <span class="stat-label">Projects Completed</span>
+                    <span class="stat-number">{{ stat.number }}</span>
+                    <span class="stat-label">{{ stat.label }}</span>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number">3+</span>
-                    <span class="stat-label">Years Experience</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Client Satisfaction</span>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -181,67 +167,29 @@ title: Home
         
         <!-- Featured Projects -->
         <div class="projects-showcase">
-            <h3 class="projects-title">Featured Projects</h3>
+            <h3 class="projects-title">{{ site.data.services.projects.title }}</h3>
             <div class="projects-grid">
+                {% for project in site.data.services.projects.items %}
                 <div class="project-card">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                                <a href="{{ project.demo_link }}" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="{{ project.github_link }}" class="project-link"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h4>E-Commerce Platform</h4>
-                        <p>Full-stack e-commerce solution with payment integration and admin dashboard.</p>
+                        <h4>{{ project.title }}</h4>
+                        <p>{{ project.description }}</p>
                         <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">PostgreSQL</span>
+                            {% for tech in project.technologies %}
+                            <span class="tech-tag">{{ tech }}</span>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h4>Task Management App</h4>
-                        <p>Collaborative project management tool with real-time updates and team features.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Vue.js</span>
-                            <span class="tech-tag">Express</span>
-                            <span class="tech-tag">MongoDB</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h4>Weather Dashboard</h4>
-                        <p>Real-time weather application with location-based forecasts and data visualization.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">API Integration</span>
-                            <span class="tech-tag">Chart.js</span>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -251,61 +199,47 @@ title: Home
 <section class="contact" id="contact">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Let's Work Together</h2>
-            <p class="section-subtitle">Ready to bring your ideas to life</p>
+            <h2 class="section-title">{{ site.data.contact.title }}</h2>
+            <p class="section-subtitle">{{ site.data.contact.subtitle }}</p>
         </div>
         
         <div class="contact-content">
             <div class="contact-info">
+                {% for info in site.data.contact.contact_info %}
                 <div class="contact-item">
                     <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
+                        <i class="{{ info.icon }}"></i>
                     </div>
                     <div class="contact-details">
-                        <h4>Email</h4>
-                        <p>{{ site.email }}</p>
+                        <h4>{{ info.title }}</h4>
+                        {% if info.title == 'Email' %}
+                        <p><a href="mailto:{{ info.value }}">{{ info.value }}</a></p>
+                        {% elsif info.title == 'LinkedIn' %}
+                        <p><a href="https://{{ info.value }}" target="_blank">{{ info.value }}</a></p>
+                        {% elsif info.title == 'GitHub' %}
+                        <p><a href="https://{{ info.value }}" target="_blank">{{ info.value }}</a></p>
+                        {% elsif info.title == 'Location' %}
+                        <p><a href="https://maps.google.com/?q={{ info.value | url_encode }}" target="_blank">{{ info.value }}</a></p>
+                        {% else %}
+                        <p>{{ info.value }}</p>
+                        {% endif %}
                     </div>
                 </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Phone</h4>
-                        <p>+1 (555) 123-4567</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Location</h4>
-                        <p>Your City, Country</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             
             <form class="contact-form">
+                {% for field in site.data.contact.form.fields %}
                 <div class="form-group">
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    {% if field.type == 'textarea' %}
+                    <textarea id="{{ field.name }}" name="{{ field.name }}" rows="{{ field.rows }}" placeholder="{{ field.placeholder }}" {% if field.required %}required{% endif %}></textarea>
+                    {% else %}
+                    <input type="{{ field.type }}" id="{{ field.name }}" name="{{ field.name }}" placeholder="{{ field.placeholder }}" {% if field.required %}required{% endif %}>
+                    {% endif %}
                 </div>
+                {% endfor %}
                 
-                <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
-                </div>
-                
-                <div class="form-group">
-                    <input type="text" id="subject" name="subject" placeholder="Subject" required>
-                </div>
-                
-                <div class="form-group">
-                    <textarea id="message" name="message" rows="6" placeholder="Your Message" required></textarea>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="submit" class="btn btn-primary">{{ site.data.contact.form.submit_text }}</button>
             </form>
         </div>
     </div>

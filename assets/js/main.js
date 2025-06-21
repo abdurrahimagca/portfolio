@@ -74,17 +74,26 @@ function initSmoothScrolling() {
     });
 }
 
-// Animate elements on scroll
+// Animate elements on scroll - can retrigger when out of view and back in view
 function animateOnScroll() {
     const elements = document.querySelectorAll('.service-card, .project-card, .stat-item, .skill-category');
     
     elements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
+        const elementBottom = element.getBoundingClientRect().bottom;
         const elementVisible = 150;
         
-        if (elementTop < window.innerHeight - elementVisible) {
+        // Element is in view
+        if (elementTop < window.innerHeight - elementVisible && elementBottom > elementVisible) {
             element.style.opacity = '1';
             element.style.transform = 'translateY(0)';
+            element.classList.add('animated');
+        } 
+        // Element is out of view (reset for re-animation)
+        else if (elementTop > window.innerHeight || elementBottom < 0) {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(50px)';
+            element.classList.remove('animated');
         }
     });
 }
@@ -188,30 +197,74 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// Typing animation for hero text
+// Typing animation for hero text - triggers when in view (fixed)
 function initTypingAnimation() {
     const heroName = document.querySelector('.hero-name');
     if (heroName) {
-        const text = heroName.textContent;
-        heroName.textContent = '';
-        heroName.style.borderRight = '2px solid var(--primary-color)';
+        const originalText = heroName.textContent;
+        let isAnimating = false;
+        let hasAnimated = false;
+        let isInViewport = false;
         
-        let i = 0;
-        const typeWriter = () => {
-            if (i < text.length) {
-                heroName.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            } else {
-                // Remove cursor after typing is complete
-                setTimeout(() => {
+        // Function to start typing animation
+        function startTyping() {
+            if (isAnimating) return;
+            
+            isAnimating = true;
+            hasAnimated = true;
+            heroName.textContent = '';
+            heroName.style.borderRight = '2px solid var(--primary-color)';
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < originalText.length) {
+                    heroName.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                } else {
+                    // Remove cursor after typing is complete
+                    setTimeout(() => {
+                        heroName.style.borderRight = 'none';
+                        isAnimating = false;
+                    }, 1000);
+                }
+            };
+            
+            typeWriter();
+        }
+        
+        // Check if element is in view with debouncing
+        function checkInView() {
+            const rect = heroName.getBoundingClientRect();
+            const currentlyInView = rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2;
+            
+            // Only trigger when first entering viewport
+            if (currentlyInView && !isInViewport && !hasAnimated) {
+                isInViewport = true;
+                startTyping();
+            } 
+            // Reset when completely out of view
+            else if (!currentlyInView && isInViewport) {
+                isInViewport = false;
+                // Only reset if we're far from the element
+                if (rect.bottom < 0 || rect.top > window.innerHeight) {
+                    hasAnimated = false;
+                    isAnimating = false;
                     heroName.style.borderRight = 'none';
-                }, 1000);
+                    heroName.textContent = originalText;
+                }
             }
-        };
+        }
         
-        // Start typing animation after a delay
-        setTimeout(typeWriter, 1000);
+        // Add scroll listener with throttling
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(checkInView, 100);
+        });
+        
+        // Check on initial load
+        setTimeout(checkInView, 500);
     }
 }
 
@@ -292,15 +345,22 @@ function addParticleStyles() {
     }
 }
 
-// Skills progress animation
+// Skills progress animation - repeatable when in view
 function animateSkillsProgress() {
     const skills = document.querySelectorAll('.skill');
     
     skills.forEach((skill, index) => {
         const rect = skill.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            skill.style.animationDelay = `${index * 0.1}s`;
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isInView) {
+            skill.style.animationDelay = `${index * 0.05}s`; // Faster animation delay
             skill.classList.add('animate');
+        } 
+        // Reset when out of view for re-animation
+        else if (rect.top > window.innerHeight || rect.bottom < 0) {
+            skill.classList.remove('animate');
+            skill.style.animationDelay = '';
         }
     });
 }

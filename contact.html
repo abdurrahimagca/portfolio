@@ -1,0 +1,55 @@
+---
+layout: default
+title: Contact
+permalink: /contact/
+---
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">{{ site.data.contact.title }}</h2>
+            <p class="section-subtitle">{{ site.data.contact.subtitle }}</p>
+        </div>
+        
+        <div class="contact-content">
+            <div class="contact-info">
+                {% for info in site.data.contact.contact_info %}
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="{{ info.icon }}"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>{{ info.title }}</h4>
+                        {% if info.title == 'Email' %}
+                        <p><a href="mailto:{{ info.value }}">{{ info.value }}</a></p>
+                        {% elsif info.title == 'LinkedIn' %}
+                        <p><a href="https://{{ info.value }}" target="_blank">{{ info.value }}</a></p>
+                        {% elsif info.title == 'GitHub' %}
+                        <p><a href="https://{{ info.value }}" target="_blank">{{ info.value }}</a></p>
+                        {% elsif info.title == 'Location' %}
+                        <p><a href="https://maps.google.com/?q={{ info.value | url_encode }}" target="_blank">{{ info.value }}</a></p>
+                        {% else %}
+                        <p>{{ info.value }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <form class="contact-form">
+                {% for field in site.data.contact.form.fields %}
+                <div class="form-group">
+                    {% if field.type == 'textarea' %}
+                    <textarea id="{{ field.name }}" name="{{ field.name }}" rows="{{ field.rows }}" placeholder="{{ field.placeholder }}" {% if field.required %}required{% endif %}></textarea>
+                    {% else %}
+                    <input type="{{ field.type }}" id="{{ field.name }}" name="{{ field.name }}" placeholder="{{ field.placeholder }}" {% if field.required %}required{% endif %}>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                
+                <button type="submit" class="btn btn-primary">{{ site.data.contact.form.submit_text }}</button>
+            </form>
+        </div>
+    </div>
+</section> 
