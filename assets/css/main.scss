@@ -3,21 +3,22 @@
 
 // Variables
 :root {
-  --primary-color: #00ff88;
-  --secondary-color: #ff3366;
-  --accent-color: #00ccff;
+  --primary-color: #ffffff;
+  --secondary-color: #333333;
+  --accent-color: #666666;
   --bg-primary: #000000;
-  --bg-secondary: #111111;
-  --bg-tertiary: #1a1a1a;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2a2a2a;
   --text-primary: #ffffff;
   --text-secondary: #cccccc;
   --text-muted: #888888;
-  --border-color: #333333;
-  --shadow-color: rgba(0, 255, 136, 0.1);
-  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-  --gradient-secondary: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  --border-color: #444444;
+  --shadow-color: rgba(255, 255, 255, 0.1);
+  --gradient-primary: linear-gradient(135deg, var(--text-primary), var(--accent-color));
+  --gradient-secondary: linear-gradient(135deg, var(--secondary-color), var(--text-primary));
   --font-primary: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --dash-border: 2px dashed var(--border-color);
 }
 
 // Reset and Base Styles
@@ -116,22 +117,26 @@ a:hover {
   }
   
   &.btn-primary {
-    background: var(--gradient-primary);
+    background: var(--text-primary);
     color: var(--bg-primary);
+    border: 2px solid var(--text-primary);
     
     &:hover {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
       transform: translateY(-2px);
       box-shadow: 0 10px 20px var(--shadow-color);
     }
   }
   
   &.btn-outline {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
     background: transparent;
     
     &:hover {
-      color: var(--bg-primary);
+      background: var(--accent-color);
+      color: var(--text-primary);
       transform: translateY(-2px);
     }
   }
@@ -193,7 +198,7 @@ a:hover {
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--primary-color);
+      background: var(--accent-color);
       transition: width 0.3s ease;
     }
     
@@ -211,7 +216,7 @@ a:hover {
   .bar {
     width: 25px;
     height: 3px;
-    background: var(--primary-color);
+    background: var(--text-primary);
     margin: 3px 0;
     transition: 0.3s;
   }
@@ -295,46 +300,195 @@ a:hover {
 }
 
 .code-animation {
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 350px;
   position: relative;
+  background: var(--bg-secondary);
+  border-radius: 15px;
+  border: var(--dash-border);
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-secondary);
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 15px 15px 0 0;
+  }
+  
+  .window-controls {
+    position: absolute;
+    top: 8px;
+    left: 15px;
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+    
+    .control {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      
+      &.close { background: #666; }
+      &.minimize { background: #888; }
+      &.maximize { background: #aaa; }
+    }
+  }
+  
+  .code-content {
+    margin-top: 40px;
+    position: relative;
+    height: calc(100% - 60px);
+  }
   
   .code-line {
     position: absolute;
-    background: var(--gradient-primary);
-    border-radius: 2px;
-    animation: pulse 2s infinite;
+    white-space: nowrap;
+    opacity: 0;
+    animation: typewriter 0.8s ease-out forwards;
     
     &:nth-child(1) {
-      width: 80%;
-      height: 4px;
-      top: 20%;
-      left: 10%;
-      animation-delay: 0s;
+      top: 0;
+      animation-delay: 0.5s;
+      
+      &::after {
+        content: '<div class="app">';
+        color: var(--text-primary);
+      }
     }
     
     &:nth-child(2) {
-      width: 60%;
-      height: 4px;
-      top: 40%;
-      left: 20%;
-      animation-delay: 0.5s;
+      top: 25px;
+      left: 20px;
+      animation-delay: 1.2s;
+      
+      &::after {
+        content: '<h1>Portfolio</h1>';
+        color: var(--accent-color);
+      }
     }
     
     &:nth-child(3) {
-      width: 90%;
-      height: 4px;
-      top: 60%;
-      left: 5%;
-      animation-delay: 1s;
+      top: 50px;
+      left: 20px;
+      animation-delay: 1.8s;
+      
+      &::after {
+        content: '<div class="card">';
+        color: var(--accent-color);
+      }
     }
     
     &:nth-child(4) {
-      width: 70%;
-      height: 4px;
-      top: 80%;
-      left: 15%;
-      animation-delay: 1.5s;
+      top: 75px;
+      left: 40px;
+      animation-delay: 2.4s;
+      
+      &::after {
+        content: '<p>Web Developer</p>';
+        color: var(--text-secondary);
+      }
+    }
+    
+    &:nth-child(5) {
+      top: 100px;
+      left: 20px;
+      animation-delay: 3.0s;
+      
+      &::after {
+        content: '</div>';
+        color: var(--accent-color);
+      }
+    }
+    
+    &:nth-child(6) {
+      top: 125px;
+      animation-delay: 3.6s;
+      
+      &::after {
+        content: '</div>';
+        color: var(--text-primary);
+      }
+    }
+  }
+  
+  .cursor {
+    position: absolute;
+    width: 2px;
+    height: 18px;
+    background: var(--text-primary);
+    animation: blink 1s infinite;
+    top: 125px;
+    left: 60px;
+    opacity: 0;
+    animation-delay: 4.2s;
+  }
+  
+  .mini-renderer {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    height: 100px;
+    background: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    opacity: 0;
+    animation: slideUp 0.8s ease-out 4.8s forwards;
+    padding: 10px;
+    font-family: var(--font-primary);
+    overflow: hidden;
+    
+    &::before {
+      content: 'Live Preview';
+      position: absolute;
+      top: -1px;
+      left: 10px;
+      font-size: 10px;
+      color: var(--accent-color);
+      background: var(--text-primary);
+      padding: 2px 6px;
+    }
+    
+    .rendered-app {
+      margin-top: 15px;
+      opacity: 0;
+      animation: fadeInElement 0.5s ease-out 5.3s forwards;
+      
+      .rendered-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--bg-primary);
+        margin-bottom: 8px;
+        opacity: 0;
+        animation: fadeInElement 0.3s ease-out 5.5s forwards;
+      }
+      
+      .rendered-card {
+        background: var(--bg-secondary);
+        border: 1px dashed var(--border-color);
+        border-radius: 6px;
+        padding: 8px;
+        opacity: 0;
+        animation: fadeInElement 0.3s ease-out 5.8s forwards;
+        
+        .rendered-text {
+          font-size: 12px;
+          color: var(--text-secondary);
+          margin: 0;
+          opacity: 0;
+          animation: fadeInElement 0.3s ease-out 6.1s forwards;
+        }
+      }
     }
   }
 }
@@ -348,7 +502,7 @@ a:hover {
   .scroll-arrow {
     width: 30px;
     height: 30px;
-    border: 2px solid var(--primary-color);
+    border: 2px dashed var(--accent-color);
     border-top: none;
     border-left: none;
     transform: rotate(45deg);
@@ -386,7 +540,7 @@ a:hover {
 
 .skill-category {
   h4 {
-    color: var(--primary-color);
+    color: var(--accent-color);
     margin-bottom: 1rem;
     font-size: 1.1rem;
   }
@@ -403,12 +557,12 @@ a:hover {
     padding: 0.5rem 1rem;
     border-radius: 25px;
     font-size: 0.9rem;
-    border: 1px solid var(--border-color);
+    border: var(--dash-border);
     transition: all 0.3s ease;
     
     &:hover {
-      background: var(--primary-color);
-      color: var(--bg-primary);
+      background: var(--accent-color);
+      color: var(--text-primary);
       transform: translateY(-2px);
     }
   }
@@ -425,19 +579,19 @@ a:hover {
   padding: 2rem;
   background: var(--bg-tertiary);
   border-radius: 15px;
-  border: 1px solid var(--border-color);
+  border: var(--dash-border);
   transition: all 0.3s ease;
   
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+    box-shadow: 0 10px 30px var(--shadow-color);
   }
   
   .stat-number {
     display: block;
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--accent-color);
     margin-bottom: 0.5rem;
   }
   
@@ -464,19 +618,19 @@ a:hover {
   background: var(--bg-secondary);
   padding: 2.5rem;
   border-radius: 20px;
-  border: 1px solid var(--border-color);
+  border: var(--dash-border);
   transition: all 0.3s ease;
   text-align: center;
   
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
-    border-color: var(--primary-color);
+    box-shadow: 0 20px 40px var(--shadow-color);
+    border-color: var(--accent-color);
   }
   
   .service-icon {
     font-size: 3rem;
-    color: var(--primary-color);
+    color: var(--accent-color);
     margin-bottom: 1.5rem;
   }
   
@@ -500,7 +654,7 @@ a:hover {
       
       &::before {
         content: '✓';
-        color: var(--primary-color);
+        color: var(--accent-color);
         font-weight: bold;
         margin-right: 0.5rem;
       }
@@ -529,12 +683,12 @@ a:hover {
   background: var(--bg-secondary);
   border-radius: 15px;
   overflow: hidden;
-  border: 1px solid var(--border-color);
+  border: var(--dash-border);
   transition: all 0.3s ease;
   
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 255, 136, 0.1);
+    box-shadow: 0 15px 30px var(--shadow-color);
   }
   
   .project-image {
@@ -566,13 +720,14 @@ a:hover {
           justify-content: center;
           width: 50px;
           height: 50px;
-          background: var(--primary-color);
-          color: var(--bg-primary);
+          background: var(--accent-color);
+          color: var(--text-primary);
           border-radius: 50%;
           transition: all 0.3s ease;
           
           &:hover {
-            background: var(--accent-color);
+            background: var(--text-primary);
+            color: var(--bg-primary);
             transform: scale(1.1);
           }
         }
@@ -604,11 +759,11 @@ a:hover {
       
       .tech-tag {
         background: var(--bg-tertiary);
-        color: var(--primary-color);
+        color: var(--accent-color);
         padding: 0.25rem 0.75rem;
         border-radius: 15px;
         font-size: 0.8rem;
-        border: 1px solid var(--border-color);
+        border: var(--dash-border);
       }
     }
   }
@@ -671,7 +826,7 @@ a:hover {
       width: 100%;
       padding: 1rem;
       background: var(--bg-tertiary);
-      border: 1px solid var(--border-color);
+      border: var(--dash-border);
       border-radius: 10px;
       color: var(--text-primary);
       font-family: var(--font-primary);
@@ -680,8 +835,8 @@ a:hover {
       
       &:focus {
         outline: none;
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 3px rgba(102, 102, 102, 0.2);
       }
       
       &::placeholder {
@@ -712,7 +867,7 @@ a:hover {
 
 .footer-section {
   h3, h4 {
-    color: var(--primary-color);
+    color: var(--accent-color);
     margin-bottom: 1rem;
   }
   
@@ -732,7 +887,7 @@ a:hover {
         transition: color 0.3s ease;
         
         &:hover {
-          color: var(--primary-color);
+          color: var(--accent-color);
         }
       }
     }
@@ -749,15 +904,15 @@ a:hover {
       width: 40px;
       height: 40px;
       background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
+      border: var(--dash-border);
       border-radius: 50%;
       color: var(--text-secondary);
       transition: all 0.3s ease;
       
       &:hover {
-        background: var(--primary-color);
-        color: var(--bg-primary);
-        border-color: var(--primary-color);
+        background: var(--accent-color);
+        color: var(--text-primary);
+        border-color: var(--accent-color);
         transform: translateY(-2px);
       }
     }
@@ -849,14 +1004,45 @@ a:hover {
   }
 }
 
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scaleY(1);
+@keyframes typewriter {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
   }
-  50% {
+  to {
     opacity: 1;
-    transform: scaleY(1.1);
+    transform: translateX(0);
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInElement {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 

@@ -28,10 +28,28 @@ title: Home
             </div>
             <div class="hero-image">
                 <div class="code-animation">
-                    <div class="code-line"></div>
-                    <div class="code-line"></div>
-                    <div class="code-line"></div>
-                    <div class="code-line"></div>
+                    <div class="window-controls">
+                        <div class="control close"></div>
+                        <div class="control minimize"></div>
+                        <div class="control maximize"></div>
+                    </div>
+                    <div class="code-content">
+                        <div class="code-line"></div>
+                        <div class="code-line"></div>
+                        <div class="code-line"></div>
+                        <div class="code-line"></div>
+                        <div class="code-line"></div>
+                        <div class="code-line"></div>
+                        <div class="cursor"></div>
+                    </div>
+                    <div class="mini-renderer">
+                        <div class="rendered-app">
+                            <h1 class="rendered-title">Portfolio</h1>
+                            <div class="rendered-card">
+                                <p class="rendered-text">Web Developer</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
