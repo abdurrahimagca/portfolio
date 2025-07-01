@@ -21,9 +21,9 @@ title: Home
                     {{ site.data.hero.description }}
                 </p>
                 <div class="hero-buttons">
-                    <a href="/about" class="btn btn-primary">About Me</a>
-                    <a href="/services" class="btn btn-outline">View My Work</a>
-                    <a href="/contact" class="btn btn-outline">Get In Touch</a>
+                    <a href="#about" class="btn btn-primary">About Me</a>
+                    <a href="#services" class="btn btn-outline">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -204,7 +204,7 @@ title: Home
         </div>
         
         <div class="contact-content">
-            <div class="contact-info">
+            <div class="contact-info-grid">
                 {% for info in site.data.contact.contact_info %}
                 <div class="contact-item">
                     <div class="contact-icon">
@@ -213,34 +213,28 @@ title: Home
                     <div class="contact-details">
                         <h4>{{ info.title }}</h4>
                         {% if info.title == 'Email' %}
-                        <p><a href="mailto:{{ info.value }}">{{ info.value }}</a></p>
-                        {% elsif info.title == 'LinkedIn' %}
-                        <p><a href="https://{{ info.value }}" target="_blank">{{ info.value }}</a></p>
-                        {% elsif info.title == 'GitHub' %}
-                        <p><a href="https://{{ info.value }}" target="_blank">{{ info.value }}</a></p>
-                        {% elsif info.title == 'Location' %}
-                        <p><a href="https://maps.google.com/?q={{ info.value | url_encode }}" target="_blank">{{ info.value }}</a></p>
+                            <div class="email-wrapper">
+                                <span id="email-value" class="email-display">agcaabdurrahim<br>@outlook.com</span>
+                                <div class="email-actions">
+                                    <button id="copy-button" class="action-btn copy-btn" title="Copy to clipboard">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                    <a href="mailto:{{ info.value }}" class="action-btn send-btn" title="Send email">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        {% elsif info.title == 'LinkedIn' or info.title == 'GitHub' %}
+                            <p><a href="{{ info.link }}" target="_blank">{{ info.value }}</a></p>
                         {% else %}
-                        <p>{{ info.value }}</p>
+                            <p>{{ info.value }}</p>
                         {% endif %}
                     </div>
                 </div>
                 {% endfor %}
             </div>
-            
-            <form class="contact-form">
-                {% for field in site.data.contact.form.fields %}
-                <div class="form-group">
-                    {% if field.type == 'textarea' %}
-                    <textarea id="{{ field.name }}" name="{{ field.name }}" rows="{{ field.rows }}" placeholder="{{ field.placeholder }}" {% if field.required %}required{% endif %}></textarea>
-                    {% else %}
-                    <input type="{{ field.type }}" id="{{ field.name }}" name="{{ field.name }}" placeholder="{{ field.placeholder }}" {% if field.required %}required{% endif %}>
-                    {% endif %}
-                </div>
-                {% endfor %}
-                
-                <button type="submit" class="btn btn-primary">{{ site.data.contact.form.submit_text }}</button>
-            </form>
         </div>
     </div>
 </section>
+
+<script src="{{ '/assets/js/contact.js' | relative_url }}"></script>

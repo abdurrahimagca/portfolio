@@ -1,43 +1,19 @@
-title: "Let's Work Together"
-subtitle: "Ready to bring your ideas to life"
+title: "How to reach me"
+subtitle: ""
 
 contact_info:
   - icon: "fas fa-envelope"
     title: "Email"
     value: "agcaabdurrahim@outlook.com"
   
-  - icon: "fab fa-linkedin"
-    title: "LinkedIn"
-    value: "linkedin.com/in/agcaabdurrahim"
-  
   - icon: "fab fa-github"
     title: "GitHub"
     value: "github.com/abdurrahimagca"
+    link: "https://github.com/abdurrahimagca"
   
-  - icon: "fas fa-map-marker-alt"
-    title: "Location"
-    value: "Antalya, Turkey"
+  - icon: "fab fa-linkedin"
+    title: "LinkedIn"
+    value: "linkedin.com/in/agcaabdurrahim"
+    link: "https://linkedin.com/in/agcaabdurrahim"
 
-form:
-  submit_text: "Send Message"
-  fields:
-    - name: "name"
-      type: "text"
-      placeholder: "Your Name"
-      required: true
-    
-    - name: "email"
-      type: "email"
-      placeholder: "Your Email"
-      required: true
-    
-    - name: "subject"
-      type: "text"
-      placeholder: "Subject"
-      required: true
-    
-    - name: "message"
-      type: "textarea"
-      placeholder: "Your Message"
-      rows: 6
-      required: true 
+ 
