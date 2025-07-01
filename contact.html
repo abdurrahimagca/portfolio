@@ -37,7 +37,7 @@ permalink: /contact/
                 {% endfor %}
             </div>
             
-            <form class="contact-form">
+            <form class="contact-form" action="https://formspree.io/f/mzzgowqr" method="POST">
                 {% for field in site.data.contact.form.fields %}
                 <div class="form-group">
                     {% if field.type == 'textarea' %}
