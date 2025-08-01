@@ -1,9 +1,3 @@
----
-layout: default
-title: Contact
-permalink: /contact/
----
-
 <!-- Contact Section -->
 <section class="contact" id="contact">
     <div class="container">
@@ -23,7 +17,7 @@ permalink: /contact/
                         <h4>{{ info.title }}</h4>
                         {% if info.title == 'Email' %}
                             <div class="email-wrapper">
-                                <span id="email-value" class="email-display">{{ info.value }}</span>
+                                <span id="email-value" class="email-display">agcaabdurrahim<br>@outlook.com</span>
                                 <div class="email-actions">
                                     <button id="copy-button" class="action-btn copy-btn" title="Copy to clipboard">
                                         <i class="fas fa-copy"></i>
@@ -34,9 +28,7 @@ permalink: /contact/
                                 </div>
                             </div>
                         {% elsif info.title == 'LinkedIn' or info.title == 'GitHub' %}
-                            <p><a href="https://{{ info.value }}" target="_blank">{{ info.value }}</a></p>
-                        {% elsif info.title == 'Location' %}
-                            <p><a href="https://maps.google.com/?q={{ info.value | url_encode }}" target="_blank">{{ info.value }}</a></p>
+                            <p><a href="{{ info.link }}" target="_blank">{{ info.value }}</a></p>
                         {% else %}
                             <p>{{ info.value }}</p>
                         {% endif %}

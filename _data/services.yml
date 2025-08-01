@@ -6,35 +6,43 @@ services:
     title: "Web Development"
     description: "Custom web applications built with modern technologies and best practices."
     features:
-      - "React/Next.js Frontend"
-      - "Node.js/NestJS Backend"
-      - "Performance Optimization"
-      - "SEO Implementation"
+      - "Modern UI/UX Design"
+      - "Maintenance & Support"
+      - "Custom Solutions for Your Needs"
+      - "Modern Techstack"
   
-  - icon: "fas fa-shopping-cart"
-    title: "E-Commerce Solutions"
-    description: "Complete e-commerce platforms with payment integration and admin dashboards."
+  - icon: "fas fa-mobile-alt"
+    title: "Mobile Development"
+    description: "Cross-platform mobile applications that deliver excellent user experiences."
     features:
-      - "Shopware Integration"
-      - "Custom CMS Solutions"
-      - "Booking Management"
-      - "Admin Panels"
+      - "Progressive Web Apps"
+      - "Native Performance"
+      - "Modern Techstack"
   
   - icon: "fas fa-server"
     title: "Backend Development"
     description: "Scalable server-side solutions with robust APIs and database management."
     features:
-      - "RESTful APIs"
-      - "GraphQL"
+      - "RESTful, GraphQL APIs"
       - "Database Design"
-      - "CI/CD Deployment"
+      - "Cloud Deployment"
+      
 
 projects:
   title: "Featured Projects"
   items:
+    - title: "Full Stack Learning Platform"
+      description: "Educational platform with responsive frontend and no-code tools but built custom event management system, custom payment system and integrated marketing tools. Still supporting the project. Unfortunatelly, I can't share the project's repos"
+      demo_link: "https://polivagalakademi.com"
+      github_link: "#"
+      technologies:
+        - "React"
+        - "Node.js"
+        - "Event Management"
+        - "Email Integration"
     - title: "E-Commerce Full Stack Platform"
-      description: "Complete e-commerce solution for tour agency using React/Next.js frontend and Node.js backend with Shopware integration."
-      demo_link: "#"
+      description: "Complete e-commerce solution for travel agency using React/Next.js frontend and Node.js backend with Shopware integration. Still developing, but you can check the demo link."
+      demo_link: "https://east-west-travel.homelab-kaleici.space"
       github_link: "#"
       technologies:
         - "React/Next.js"
@@ -44,7 +52,7 @@ projects:
         - "Docker"
     
     - title: "QooQuote - Social Media Platform"
-      description: "Modern social media platform with clean UI design, PostgreSQL database, and real-time features using WebSocket."
+      description: "Modern social media platform which combines GoodReads Letterbox and brings new features to the table. Still developing, any collaboration is welcome! You can check project on GitHub."
       github_link: "github.com/abdurrahimagca/qoo-quote-be"
       technologies:
         - "NestJS"
@@ -53,12 +61,4 @@ projects:
         - "WebSocket"
         - "Figma"
     
-    - title: "Full Stack Learning Platform"
-      description: "Educational platform with responsive frontend, custom event management system, and integrated marketing tools."
-      demo_link: "#"
-      github_link: "#"
-      technologies:
-        - "React"
-        - "Node.js"
-        - "Event Management"
-        - "Email Integration" 
+  

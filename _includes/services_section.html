@@ -1,0 +1,63 @@
+<!-- Services Section -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Services & Projects</h2>
+            <p class="section-subtitle">What I can do for you</p>
+        </div>
+        
+        <div class="services-grid">
+            {% for service in site.data.services.services %}
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="{{ service.icon }}"></i>
+                </div>
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.description }}</p>
+                <ul class="service-features">
+                    {% for feature in service.features %}
+                    <li>{{ feature }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Featured Projects -->
+        <div class="section-header">
+            <h2 class="section-title">{{ site.data.services.projects.title }}</h2>
+        </div>
+        <div class="projects-grid">
+            {% for project in site.data.services.projects.items %}
+            <div class="project-card">
+                <div class="project-header">
+                    <h4>{{ project.title }}</h4>
+                    <div class="project-links">
+                        {% if project.demo_link and project.demo_link != "#" %}
+                        <a href="{{ project.demo_link }}" class="project-link demo-link" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span class="project-link-text">Live Demo</span>
+                        </a>
+                        {% endif %}
+                        {% if project.github_link and project.github_link != "#" %}
+                        <a href="{{ project.github_link }}" class="project-link github-link" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i>
+                            <span class="project-link-text">GitHub</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="project-content">
+                    <p>{{ project.description }}</p>
+                    <div class="project-tech">
+                        {% for tech in project.technologies %}
+                        <span class="tech-tag">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+</section>

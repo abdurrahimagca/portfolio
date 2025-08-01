@@ -213,20 +213,16 @@ function initTypingAnimation() {
             isAnimating = true;
             hasAnimated = true;
             heroName.textContent = '';
-            heroName.style.borderRight = '2px solid var(--primary-color)';
             
             let i = 0;
             const typeWriter = () => {
                 if (i < originalText.length) {
                     heroName.textContent += originalText.charAt(i);
                     i++;
-                    setTimeout(typeWriter, 50);
+                    setTimeout(typeWriter, 60);
                 } else {
-                    // Remove cursor after typing is complete
-                    setTimeout(() => {
-                        heroName.style.borderRight = 'none';
-                        isAnimating = false;
-                    }, 1000);
+                    // Typing is complete
+                    isAnimating = false;
                 }
             };
             
@@ -250,7 +246,6 @@ function initTypingAnimation() {
                 if (rect.bottom < 0 || rect.top > window.innerHeight) {
                     hasAnimated = false;
                     isAnimating = false;
-                    heroName.style.borderRight = 'none';
                     heroName.textContent = originalText;
                 }
             }

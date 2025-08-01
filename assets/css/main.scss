@@ -267,11 +267,15 @@ a:hover {
   }
   
   .hero-name {
+    position: relative;
+    display: inline-block;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  
 }
 
 .hero-subtitle {
@@ -296,8 +300,8 @@ a:hover {
 
 .hero-image {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: end;
+  align-items: end;
   animation: slideInRight 1s ease-out;
   will-change: transform;
 }
@@ -350,6 +354,8 @@ a:hover {
   .code-content {
     margin-top: 40px;
     position: relative;
+    padding: 10px;
+
     height: calc(100% - 60px);
     overflow: auto;
     
@@ -388,7 +394,7 @@ a:hover {
         // Sync with hero text animations
         &.json-line-1 { animation-delay: 0.5s; } // { - with "Hello, I'm"
         &.json-line-2 { animation-delay: 1.0s; } // "name" - with name appearance
-        &.json-line-3 { animation-delay: 1.2s; } // "surname" - right after name
+        &.json-line-3 { animation-delay: 1.0s; } // "surname" - right after name
         &.json-line-4 { animation-delay: 1.8s; } // "role" - with hero-subtitle
         &.json-line-5 { animation-delay: 2.3s; } // "status" - with description start
         &.json-line-6 { animation-delay: 2.5s; } // "skills" [
@@ -794,17 +800,73 @@ a:hover {
     }
   }
   
-  .project-content {
-    padding: 1.5rem;
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.5rem 1.5rem 0;
+    margin-bottom: 1rem;
     
     h4 {
-      margin-bottom: 0.5rem;
+      margin: 0;
       color: var(--text-primary);
+      flex: 1;
     }
+    
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+
+      
+      .project-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: var(--accent-color);
+        color: var(--text-primary);
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid var(--accent-color);
+        
+        &:hover {
+          background: var(--text-primary);
+          color: var(--bg-primary);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px var(--shadow-color);
+        }
+        
+        &.demo-link:hover {
+          background: #4CAF50;
+          border-color: #4CAF50;
+        }
+        
+        &.github-link:hover {
+          background: #333;
+          border-color: #333;
+        }
+        
+        i {
+          font-size: 0.8rem;
+        }
+        
+        span {
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
+  
+  .project-content {
+    padding: 0 1.5rem 1.5rem;
     
     p {
       color: var(--text-secondary);
       margin-bottom: 1rem;
+      line-height: 1.6;
     }
     
     .project-tech {
@@ -1180,6 +1242,31 @@ a:hover {
 // Enhanced typing cursor style
 .hero-name {
   position: relative;
+  
+}
+
+.hero-name-container {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Added for absolute positioning of cursor */
+}
+
+.typing-cursor {
+  position: absolute;
+  width: 2px;
+  height: 50px; /* Fixed height for the cursor */
+  background: var(--text-primary);
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0; /* Initially hidden */
+  left: 0; /* Initial position, will be updated by JS */
+}
+
+.typing-cursor.finished {
+  opacity: 1;
+  animation: blink 1s infinite;
 }
 
 @keyframes slideUp {
@@ -1328,4 +1415,30 @@ body {
   .container {
     padding: 0 1rem;
   }
-}
+
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem 0 0;
+    .project-links {
+      margin-left: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .project-link {
+        width: 100%;
+        justify-content: center;
+
+        .project-link-text {
+          display: none;
+        }
+
+        i {
+          font-size: 1rem;
+        }
+      }
+    }
+  }}
