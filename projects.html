@@ -1,0 +1,51 @@
+---
+layout: default
+title: Projects
+---
+
+<div class="projects-container">
+    <h1>Projects</h1>
+
+    <div class="projects-grid">
+        {% for project in site.projects %}
+        <article class="project-card">
+            <div class="project-card-header">
+                <h2 class="project-card-title">{{ project.title }}</h2>
+                {% if project.tech %}
+                <div class="project-card-tech">
+                    {% for t in project.tech %}
+                    <span class="tech-tag">{{ t }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="project-card-content">
+                <p class="project-card-description">{{ project.description }}</p>
+            </div>
+            <div class="project-card-footer">
+                {% if project.github %}
+                 <button onclick="window.open('{{ project.github }}', '_blank')">
+                    <i class="fab fa-github"></i> Source
+                </button>
+                {% endif %}
+                {% if project.live %}
+                <button onclick="window.open('{{ project.live }}', '_blank')">
+                    <i class="fas fa-external-link-alt"></i> Live
+                </button>
+                {% endif %}
+                {% if project.content.size > 0 %}
+                    <button onclick="window.open('{{ project.url | relative_url }}', '_blank')">
+                    <i class="fas fa-arrow-right"></i> Details
+                </button>
+                {% endif %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+    {% if site.projects.size == 0 %}
+    <div class="projects-empty">
+        <p>No projects yet.</p>
+    </div>
+    {% endif %}
+</div>

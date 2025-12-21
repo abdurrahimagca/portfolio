@@ -87,11 +87,10 @@ i {
 .nav-bar {
     display: flex;
     flex-direction: row;
-    align-items: start;
     gap: var(--site-gap);
-    padding-bottom: var(--site-gap);
-    padding-top: var(--site-gap);
-
+    height: 50px;
+    justify-content: center;
+    align-items: center;
     border-bottom: 1px solid var(--overlay1);
 }
 footer {
@@ -105,59 +104,42 @@ footer p a {
     font-size: 0.875rem;
 }
 
-
-.hero-container {
+/* Home */
+.home {
+    height: calc(100vh - 100px);
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: calc(100vh - 100px);
-}
-
-.hero-content {
-    text-align: left;
-    width: 100%;
-    max-width: var(--site-max-width);
-}
-
-.hero-link-group {
-    display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--site-gap);
-}
-
-.hero-link-group i {
-    font-size: var(--site-icon-size);
-    margin-right: var(--site-icon-margin);
-    color: var(--site-icon-color);
+    text-align: center;
 }
 
 /* Button Styles */
 button,
 a.button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--site-space-sm);
     background-color: var(--button-bg);
     color: var(--button-text);
     border: none;
     padding: var(--site-space-sm) var(--site-space-md);
-    border-radius: 0;
     cursor: pointer;
     font-family: "JetBrains Mono", monospace;
     font-size: 1rem;
     font-weight: 500;
     text-decoration: none;
-    transition: all 0.2s ease-in-out;
 }
 
 button:hover,
 a.button:hover {
     background-color: var(--button-bg-hover);
-    color: var(--button-text);
 }
-button i {
-    color: var(--button-text);
+
+button i,
+a.button i {
+    color: inherit;
+    margin: 0;
 }
 
 
@@ -282,13 +264,9 @@ button i {
         flex-wrap: wrap;
         gap: var(--site-space-sm);
     }
-    
-    .hero-container {
-        min-height: calc(100vh - 150px);
-        padding: var(--site-space-md) 0;
-    }
-    
+
     .blog-container {
+        
         padding: var(--site-space-md) var(--site-space-sm);
     }
     
@@ -309,22 +287,272 @@ button i {
     :root {
         --site-max-width: 100%;
     }
-    
+
     body {
         font-size: 0.9rem;
     }
-    
+
     .blog-container h1 {
         font-size: 1.25rem;
     }
-    
+
     .blog-card-title {
         font-size: 1.1rem;
     }
-    
+
     .blog-search-input {
         font-size: 0.9rem;
         padding: var(--site-space-sm) var(--site-space-md);
         padding-right: 2.5rem;
     }
+}
+
+/* Page Containers - same margin-top for all */
+.blog-container,
+.projects-container,
+.post-container {
+    margin-top: var(--site-space-lg);
+}
+
+/* Projects Section */
+.projects-container {
+}
+
+.projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--site-space-lg);
+}
+
+.project-card {
+    background-color: var(--surface0);
+    border: 1px solid var(--overlay1);
+    padding: var(--site-space-lg);
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card-header {
+    margin-bottom: var(--site-space-md);
+}
+
+.project-card-title {
+    margin: 0 0 var(--site-space-sm) 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.project-card-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--site-space-sm);
+}
+
+.tech-tag {
+    font-size: 0.75rem;
+    color: var(--subtext0);
+    background-color: var(--surface1);
+    padding: 0.2rem 0.5rem;
+}
+
+.project-card-content {
+    flex: 1;
+    margin-bottom: var(--site-space-md);
+}
+
+.project-card-description {
+    margin: 0;
+    color: var(--text);
+}
+
+.project-card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--site-space-sm);
+    margin-top: auto;
+}
+
+.projects-empty {
+    text-align: center;
+    padding: var(--site-space-lg);
+    color: var(--subtext0);
+}
+
+@media (max-width: 767px) {
+    .projects-container {
+        padding: var(--site-space-md) var(--site-space-sm);
+    }
+
+    .project-card {
+        padding: var(--site-space-md);
+    }
+
+    .project-card-title {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-card-title {
+        font-size: 1.1rem;
+    }
+}
+
+/* Markdown Styles */
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text);
+    font-weight: 500;
+    margin-top: var(--site-space-lg);
+    margin-bottom: var(--site-space-md);
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1rem; }
+h5 { font-size: 0.875rem; }
+h6 { font-size: 0.75rem; }
+
+/* Paragraphs */
+p {
+    margin: 0 0 var(--site-space-md) 0;
+    line-height: 1.6;
+}
+
+/* Lists */
+ul, ol {
+    margin: 0 0 var(--site-space-md) 0;
+    padding-left: var(--site-space-lg);
+}
+
+li {
+    margin-bottom: var(--site-space-sm);
+    line-height: 1.6;
+}
+
+/* Blockquote */
+blockquote {
+    margin: 0 0 var(--site-space-md) 0;
+    padding: var(--site-space-md);
+    border-left: 3px solid var(--mauve);
+    background-color: var(--surface0);
+    color: var(--subtext1);
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Horizontal Rule */
+hr {
+    border: none;
+    border-top: 1px solid var(--overlay1);
+    margin: var(--site-space-lg) 0;
+}
+
+/* Code - Inline */
+code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.875em;
+    background-color: var(--surface0);
+    padding: 0.1rem 0.3rem;
+    color: var(--mauve);
+}
+
+/* Code - Block */
+pre {
+    margin: 0 0 var(--site-space-md) 0;
+    padding: var(--site-space-md);
+    background-color: var(--surface0);
+    border: 1px solid var(--overlay1);
+    overflow-x: auto;
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
+    color: var(--text);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    margin: 0 0 var(--site-space-md) 0;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: var(--site-space-sm) var(--site-space-md);
+    text-align: left;
+    border: 1px solid var(--overlay1);
+}
+
+th {
+    background-color: var(--surface0);
+    font-weight: 500;
+    color: var(--text);
+}
+
+td {
+    background-color: var(--base);
+    color: var(--text);
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 0 var(--site-space-md) 0;
+}
+
+/* Links in content */
+main a {
+    color: var(--mauve);
+    text-decoration: underline;
+}
+
+main a:hover {
+    color: var(--rosewater);
+}
+
+/* Language Selector for Blog Posts */
+.lang-selector {
+    display: flex;
+    gap: var(--site-space-sm);
+    margin-bottom: var(--site-space-md);
+}
+
+.lang-btn {
+    background-color: var(--surface0);
+    color: var(--text);
+    border: 1px solid var(--overlay1);
+    padding: var(--site-space-sm) var(--site-space-md);
+    cursor: pointer;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.875rem;
+}
+
+.lang-btn.active {
+    background-color: var(--mauve);
+    color: var(--crust);
+    border-color: var(--mauve);
+}
+
+.lang-content {
+    display: none;
+}
+
+.lang-content.active {
+    display: block;
+}
+
+/* Post Container */
+.post-container h1 {
+    margin-top: 0;
 }
