@@ -552,7 +552,29 @@ main a:hover {
     display: block;
 }
 
-/* Post Container */
-.post-container h1 {
-    margin-top: 0;
+/* Post Styles */
+.post {
+    margin-top: var(--site-space-lg);
+}
+
+.post-header {
+    margin-bottom: var(--site-space-lg);
+    padding-bottom: var(--site-space-md);
+    border-bottom: 1px solid var(--overlay1);
+}
+
+.post-title {
+    margin: 0 0 var(--site-space-sm) 0;
+}
+
+.post-date {
+    display: block;
+    color: var(--subtext0);
+    font-size: 0.875rem;
+    margin-bottom: var(--site-space-md);
+}
+
+.lang-switcher {
+    display: flex;
+    gap: var(--site-space-sm);
 }
