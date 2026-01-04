@@ -74,3 +74,5 @@ exclude:
   - Gemfile.lock
   - node_modules/
   - vendor/
+  - "**/*.scss"
+  - "**/*.sass"
