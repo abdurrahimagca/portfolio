@@ -1,5 +1,5 @@
 [phases.install]
-cmds = ["bundle install"]
+cmds = ["bundle install --deployment --jobs 4 --retry 3"]
 
 [phases.build]
 cmds = ["JEKYLL_ENV=production bundle exec jekyll build"]
