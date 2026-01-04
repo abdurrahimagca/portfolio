@@ -33,6 +33,7 @@ twitter_username: your-twitter
 markdown: kramdown
 highlighter: rouge
 permalink: /blog/:title/
+encoding: utf-8
 
 # Navigation
 nav_links:
