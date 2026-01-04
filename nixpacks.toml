@@ -2,7 +2,7 @@
 cmds = ["bundle install"]
 
 [phases.build]
-cmds = ["bundle exec jekyll build"]
+cmds = ["JEKYLL_ENV=production bundle exec jekyll build"]
 
 [start]
 cmd = "ruby server.rb"
